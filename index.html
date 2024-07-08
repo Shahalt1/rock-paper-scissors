@@ -97,6 +97,7 @@
           score.win++;
           result = "You win!";
         }
+        localStorage.setItem("score", JSON.stringify(score));
 
         document.getElementById("result").innerHTML = `
           <p>Computer chose: <strong>${computer_move}</strong></p>
@@ -111,11 +112,7 @@
         console.log(player_move_data);
       }
 
-      const score = {
-        win: 0,
-        lose: 0,
-        tie: 0,
-      };
+      const score = JSON.parse("score");
       const player_move_data = {
         rock: 0,
         paper: 0,
