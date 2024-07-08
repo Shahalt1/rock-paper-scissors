@@ -109,10 +109,10 @@
         document.getElementById("losses").textContent = score.lose;
         document.getElementById("ties").textContent = score.tie;
         console.log(player_data);
-        console.log(player_move_data);
+        console.log(score);
       }
 
-      const score = JSON.parse("score");
+      const score = JSON.parse(localStorage.getItem("score"));
       const player_move_data = {
         rock: 0,
         paper: 0,
