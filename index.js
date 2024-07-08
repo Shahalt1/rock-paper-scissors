@@ -3,7 +3,7 @@ function computerMove() {
   const options = ["rock", "paper", "scissor"];
   return options[move];
 }
-player_data = [];
+
 function playerMove(player_move) {
   player_data.push(player_move);
   player_move_data[player_move]++;
@@ -24,6 +24,8 @@ function playerMove(player_move) {
     result = "You win!";
   }
   localStorage.setItem("score", JSON.stringify(score));
+  localStorage.setItem("player_data", JSON.stringify(player_data));
+  localStorage.setItem("player_move_data", JSON.stringify(player_move_data));
 
   document.getElementById("result").innerHTML = `
     <p>Computer chose: <strong>${computer_move}</strong></p>
@@ -37,16 +39,27 @@ function playerMove(player_move) {
   console.log(player_data);
   console.log(player_move_data);
 }
-let score = JSON.parse(localStorage.getItem("score"));
-if (!score) {
-  score = {
-    win: 0,
-    lose: 0,
-    tie: 0,
-  };
-}
-const player_move_data = {
+let score = JSON.parse(localStorage.getItem("score")) || {
+  win: 0,
+  lose: 0,
+  tie: 0,
+};
+let player_data = JSON.parse(localStorage.getItem("player_data")) || [];
+let player_move_data = JSON.parse(localStorage.getItem("player_move_data")) || {
   rock: 0,
   paper: 0,
   scissor: 0,
 };
+
+function reset() {
+  localStorage.removeItem("score");
+  score.win = 0;
+  score.lose = 0;
+  score.tie = 0;
+  localStorage.removeItem("player_move_data");
+  player_move_data.rock = 0;
+  player_move_data.paper = 0;
+  player_move_data.scissor = 0;
+  localStorage.removeItem("player_data");
+  player_move = [];
+}
