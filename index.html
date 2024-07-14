@@ -9,10 +9,16 @@
   </head>
   <body>
     <h1>Rock Paper Scissors</h1>
-    <div class="button-container">
-      <button onclick="playerMove('rock')">Rock</button>
-      <button onclick="playerMove('paper')">Paper</button>
-      <button onclick="playerMove('scissor')">Scissor</button>
+    <div class="button-container"> 
+      <button class="move-button" onclick="playGame('rock')">
+        <img src="images/rock-emoji.png" alt="rock emoji" />
+      </button>
+      <button class="move-button" onclick="playGame('paper')">
+        <img src="images/paper-emoji.png" alt="paper emoji" />
+      </button>
+      <button class="move-button" onclick="playGame('scissor')">
+        <img src="images/scissors-emoji.png" alt="scissors emoju" />
+      </button>
     </div>
     <div id="result"></div>
     <div class="scoreboard">
