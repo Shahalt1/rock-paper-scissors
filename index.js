@@ -4,7 +4,7 @@ function computerMove() {
   return options[move];
 }
 
-function playerMove(player_move) {
+function playGame(player_move) {
   player_data.push(player_move);
   player_move_data[player_move]++;
   const computer_move = computerMove();
