@@ -28,8 +28,9 @@ function playGame(player_move) {
   localStorage.setItem("player_move_data", JSON.stringify(player_move_data));
 
   document.getElementById("result").innerHTML = `
-    <p>Computer chose: <strong>${computer_move}</strong></p>
-    <p>You chose: <strong>${player_move}</strong></p>
+    <p>Computer chose: <img src="images/${computer_move}-emoji.png" alt=""></p>
+    <p>You chose: <img src="images/${player_move}-emoji.png" alt=""></p>
+    </br>
     <p><strong>${result}</strong></p>
   `;
 
