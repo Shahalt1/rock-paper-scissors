@@ -1,9 +1,22 @@
 function computerMove() {
   const move = Math.floor(Math.random() * 3);
-  const options = ["rock", "paper", "scissor"];
+  const options = ["rock", "paper", "scissors"];
   return options[move];
 }
 
+let isAutoPlaying = false;
+let intervalId;
+function autoPlay() {
+  if (!isAutoPlaying) {
+    intervalId = setInterval(function () {
+      playGame(computerMove());
+    }, 1000);
+    isAutoPlaying = true;
+  } else {
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+  }
+}
 function playGame(player_move) {
   player_data.push(player_move);
   player_move_data[player_move]++;
