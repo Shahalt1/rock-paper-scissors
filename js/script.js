@@ -8,7 +8,7 @@ let isAutoPlaying = false;
 let intervalId;
 function autoPlay() {
   if (!isAutoPlaying) {
-    intervalId = setInterval(function () {
+    intervalId = setInterval(()=> {
       playGame(computerMove());
     }, 1000);
     isAutoPlaying = true;
