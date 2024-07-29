@@ -67,3 +67,12 @@ img {
 p {
   display: inline-block;
 }
+
+.btn-primary {
+  background-color: #74be77;
+  padding: 7px 13px;
+}
+.btn-secondary {
+  background-color: rgb(221, 43, 43);
+  padding: 7px 13px;
+}

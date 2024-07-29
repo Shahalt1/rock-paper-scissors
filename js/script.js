@@ -7,16 +7,26 @@ function computerMove() {
 let isAutoPlaying = false;
 let intervalId;
 function autoPlay() {
+  const autoplayButton = document.querySelector(".js-autoplay");
+
   if (!isAutoPlaying) {
+    autoplayButton.textContent = "Stop Auto Play";
     intervalId = setInterval(() => {
       playGame(computerMove());
     }, 1000);
     isAutoPlaying = true;
   } else {
+    autoplayButton.innerHTML = "Auto Play";
     clearInterval(intervalId);
     isAutoPlaying = false;
   }
 }
+document.body.addEventListener("keydown", (event) => {
+  if (event.key === "a") {
+    autoPlay();
+  }
+});
+
 document
   .querySelector(".js-rock-button")
   .addEventListener("click", () => playGame("rock"));
@@ -85,6 +95,24 @@ let player_move_data = JSON.parse(localStorage.getItem("player_move_data")) || {
 };
 
 function reset() {
+  const confirmReset = document.querySelector(".js-confirm-reset");
+  confirmReset.innerHTML = `Are you sure you want to reset the game?  
+  <button class="btn btn-primary btn-sm">Yes</button>
+  <button class="btn btn-secondary btn-sm">No</button>`;
+  const resetButton = document.querySelector(".js-reset");
+  resetButton.innerHTML = "Confirm Reset";
+  confirmReset.addEventListener("click", function (event) {
+    if (event.target.classList.contains("btn-primary")) {
+      confirmReseting();
+      confirmReset.innerHTML = "";
+    } else if (event.target.classList.contains("btn-secondary")) {
+      confirmReset.innerHTML = "";
+    }
+    resetButton.innerHTML = "Reset";
+  });
+}
+
+const confirmReseting = () => {
   localStorage.removeItem("score");
   score.win = 0;
   score.lose = 0;
@@ -95,4 +123,21 @@ function reset() {
   player_move_data.scissor = 0;
   localStorage.removeItem("player_data");
   player_move = [];
-}
+};
+
+document.body.addEventListener("keydown", (event) => {
+  if (event.key === "Backspace") {
+    const confirmReset = document.querySelector(".js-confirm-reset");
+    confirmReset.innerHTML = `Are you sure you want to reset the game?  
+   <button class="btn btn-primary btn-sm">Yes</button>
+   <button class="btn btn-secondary btn-sm">No</button>`;
+    const resetButton = document.querySelector(".js-reset");
+    resetButton.innerHTML = "Confirm Reset";
+    if (event.target.classList.contains("btn-primary")) {
+      confirmReseting();
+      confirmReset.innerHTML = "";
+    } else if (event.target.classList.contains("btn-secondary")) {
+      confirmReset.innerHTML = "";
+    }
+  }
+});
