@@ -79,8 +79,6 @@ function playGame(player_move) {
   document.getElementById("wins").textContent = score.win;
   document.getElementById("losses").textContent = score.lose;
   document.getElementById("ties").textContent = score.tie;
-  console.log(player_data);
-  console.log(player_move_data);
 }
 let score = JSON.parse(localStorage.getItem("score")) || {
   win: 0,
@@ -123,6 +121,9 @@ const confirmReseting = () => {
   player_move_data.scissor = 0;
   localStorage.removeItem("player_data");
   player_move = [];
+  document.getElementById("wins").textContent = score.win;
+  document.getElementById("losses").textContent = score.lose;
+  document.getElementById("ties").textContent = score.tie;
 };
 
 document.body.addEventListener("keydown", (event) => {
